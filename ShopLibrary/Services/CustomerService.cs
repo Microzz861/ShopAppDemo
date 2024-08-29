@@ -37,10 +37,8 @@ namespace ShopLibrary.Services
                     count = count - quantity;
                     item.Count = count;
                     return totalPrice;
-                    //Insert render function again
                 }
                 return totalPrice;
-
             });
             itemProfit = itemProfit + profit;
             await _customerRepository.UpdateCustomer(customer);
@@ -81,7 +79,6 @@ namespace ShopLibrary.Services
         {
             await _customerRepository.DeleteCustomerById(Id);
         }
-
         public async Task<Customer> GetCustomerByIdAsync(string Id)
         {
             var customer = await _customerRepository.GetCustomerById(Id);

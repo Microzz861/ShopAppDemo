@@ -22,15 +22,14 @@ namespace ShopLibrary.Services
         public async Task AddSupplierAsync(Supplier supplier)
         { 
                 var customer = await _supplierRepository.GetSupplierByName(supplier.Name);
-                if (customer == null)
-                {
-                    await _supplierRepository.AddSupplier(supplier);
-                }
-                else
-                {
-                    Console.WriteLine("Customer already exists within the database");
-                }
-            
+            if (customer == null)
+            {
+                await _supplierRepository.AddSupplier(supplier);
+            }
+            else
+            {
+                Console.WriteLine("Customer already exists within the database");
+            }  
         }
 
         public async Task DeleteSupplierByIdAsync(string supplierId)
@@ -47,7 +46,6 @@ namespace ShopLibrary.Services
         {
             var supplier = await _supplierRepository.GetSupplierByName(supplierName);
             return supplier;
-
         }
     
 

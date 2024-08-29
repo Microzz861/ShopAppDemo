@@ -23,7 +23,6 @@ namespace ShopApp
             _itemService = itemService;
             _supplierService = supplierService;
         }
-
         public async Task supplierNameInterface()
         {
             Console.WriteLine("What is your name?");
@@ -62,7 +61,6 @@ namespace ShopApp
 
                         }
                     }
-
                 }
             }
         }
@@ -141,7 +139,6 @@ namespace ShopApp
                     }
                     else
                     {
-
                         Console.WriteLine("\nPerhaps you misspelt your name?");
                         Console.WriteLine("Would you like to reenter your name?\n");
                         Console.WriteLine("1) Yes");
@@ -215,23 +212,21 @@ namespace ShopApp
                     Console.WriteLine();
                     if (int.TryParse(quantityInput, out quantity))
                     {
-                    if (type == "Customer")
-                    {
-                        double profit = await _customerService.PurchaseItemAsync(identifier, item.Name, quantity);
-                        Console.WriteLine($"Thank you for your purchase, we have gained {profit}");
-                    }
-                    else
-                    {
-                        double profit = await _itemService.BuyFromSupplierAsync(identifier, item, quantity);
-                        Console.WriteLine($"Thank you for your purchase, we have gained {quantity} {item.Name}/s");
-                    }
+                        if (type == "Customer")
+                        {
+                            double profit = await _customerService.PurchaseItemAsync(identifier, item.Name, quantity);
+                            Console.WriteLine($"Thank you for your purchase, we have gained {profit}");
+                        }
+                        else
+                        {
+                            double profit = await _itemService.BuyFromSupplierAsync(identifier, item, quantity);
+                            Console.WriteLine($"Thank you for your purchase, we have gained {quantity} {item.Name}/s");
+                        }
                     }
                     else
                     {
                         Console.WriteLine("Invalid amount entered. Please enter the amount again");
                     }
-
-
             }
         }
         public async Task customerHomeInterface(string name)
@@ -343,10 +338,7 @@ namespace ShopApp
                     await managerHomeInterface();
                 }
             }
-
         }
-
-
         public async Task itemSuppliersInterface()
         {
             List<Supplier> supplierList = await _supplierService.GetAllSuppliersAsync();
@@ -358,8 +350,7 @@ namespace ShopApp
                 Console.WriteLine("Retail Items: " + String.Join(", ", supplier.items));
                 Console.WriteLine();
             }
-            await itemSupplierNameInterface(supplierList);
-           
+            await itemSupplierNameInterface(supplierList);    
         }
 
         public async Task itemSupplierNameInterface(List<Supplier> supplierList)
@@ -380,9 +371,7 @@ namespace ShopApp
                         Console.WriteLine();
                         await itemSupplierNameInterface(supplierList);
                     }
-
                 }
-            
         }
 
         public async Task supplierItemPurchaseInterface(Supplier supplier)
@@ -396,9 +385,7 @@ namespace ShopApp
                 foreach (var item in group)
                 {
                     Console.WriteLine($"Item: {item.Name}, Price: {item.Price}, Count: {item.Count}");
-                }
-               
-                
+                }  
             }
             Console.WriteLine();
             await itemNameInterface(itemList, supplier.Id, "Manager");

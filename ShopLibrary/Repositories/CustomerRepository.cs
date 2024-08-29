@@ -67,9 +67,6 @@ namespace ShopLibrary.Repositories
         {
             var filter = Builders<Customer>.Filter.Eq(c => c.Id, customer.Id);
             await CustomerCollection.FindOneAndReplaceAsync(filter, customer);
-            
-
         }
-
     }
 }
